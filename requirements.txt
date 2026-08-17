@@ -1,0 +1,17 @@
+# Versions figées pour reproductibilité stricte (exigence du prof).
+# Générées avec Python 3.12 sur l'environnement de développement.
+# Si tu utilises Colab/Kaggle, garde ces versions (pip install -r requirements.txt
+# les forcera) sauf incompatibilité GPU signalée -- dans ce cas, documente
+# l'écart dans notebook.md (cf. règle "cahier des charges" du prof).
+
+torch==2.3.0
+gymnasium==1.3.0
+numpy==1.26.4
+pyyaml==6.0.1
+matplotlib==3.9.2
+tensorboard==2.17.0
+pandas==2.2.2
+seaborn==0.13.2
+pytest==8.3.3
+scipy==1.14.1
+imageio-ffmpeg==0.5.1
