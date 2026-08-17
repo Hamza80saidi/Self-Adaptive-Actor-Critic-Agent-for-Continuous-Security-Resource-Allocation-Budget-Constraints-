@@ -1,0 +1,28 @@
+# Ignorer l'environnement virtuel
+.venv/
+venv/
+.env/
+
+
+#Ignorer les fichiers de logs
+#*.log
+#logs/
+#training_logs/
+
+# Ignorer les résultats volumineux
+# .csv
+# results/
+# outputs/
+
+# Ignorer les fichiers de figures et vidéos
+# figures/
+# videos/
+
+#Ignorer les fichiers temporaires
+ __pycache__/
+ *.pyc
+ *.pyo
+ *.tmp
+
+# Ignorer les notebooks checkpoints
+ .ipynb_checkpoints/

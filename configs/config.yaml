@@ -1,0 +1,42 @@
+# Configuration centralisée du projet
+# Modifie ces valeurs pour lancer différentes expériences sans toucher au code
+
+environment:
+  n_resources: 5              # firewall/IDS, patching, formation, monitoring, backup
+  horizon: 30                 # nombre de jours par épisode
+  total_budget: 1000.0        # budget total à répartir sur l'épisode
+  threat_volatility: 0.3      # amplitude de variation stochastique de la menace (0-1)
+  reward_lambda: 0.1          # poids de la pénalité de coût gaspillé dans le reward
+  seed: 42
+
+agent:
+  algorithm: "ppo"            # ppo | a2c
+  hidden_dim: 128
+  n_hidden_layers: 2
+  actor_lr: 3.0e-4
+  critic_lr: 1.0e-3
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_epsilon: 0.2           # spécifique PPO
+  entropy_coef: 0.01          # utilisé tel quel pour le variant "baseline"
+  value_loss_coef: 0.5
+
+# Enhancement évalué (Section V du rapport) : entropy annealing.
+# variant=baseline  -> entropy_coef fixe (config.agent.entropy_coef)
+# variant=enhanced  -> entropy_coef décroît linéairement de start à end sur l'entraînement
+enhancement:
+  type: "entropy_annealing"
+  entropy_coef_start: 0.01
+  entropy_coef_end: 0.001
+
+training:
+  n_episodes: 16667        # <- était 2000 (60k steps) -> 500 010 steps
+  batch_size: 64
+  n_epochs_per_update: 10
+  update_every: 5
+  checkpoint_every: 2000    # <- était 200 (sinon ~83 checkpoints/run, inutile)
+  log_dir: "logs/"
+
+evaluation:
+  n_eval_episodes: 100
+  render: false
